@@ -18,8 +18,8 @@ const generateRandomBetween = (min, max, exclude) => {
 
 const renderListItem = (listLength, itemData) => (
   <View style={styles.listItem}>
-    <BodyText>#{listLength - itemData.index}</BodyText>
-    <BodyText>{itemData.item}</BodyText>
+    <Text style={defaultStyle.bodyText}>#{listLength - itemData.index}</Text>
+    <Text style={defaultStyle.bodyText}>{itemData.item}</Text>
   </View>
 );
 
@@ -31,7 +31,7 @@ const GameScreen = (props) => {
   const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
   useEffect(() => {
     if (currentGuess === props.userChoice) {
-      props.onGameOver(rounds);
+      props.onGameOver(pastGuesses.length);
     }
   }, [currentGuess, props.userChoice, props.onGameOver]);
 
