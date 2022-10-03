@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, StyleSheet, Alert, FlatList } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import Card from '../components/Card';
@@ -16,13 +16,19 @@ const generateRandomBetween = (min, max, exclude) => {
   } else return rndm;
 };
 
+const renderListItem = (listLength, itemData) => (
+  <View style={styles.listItem}>
+    <BodyText>#{listLength - itemData.index}</BodyText>
+    <BodyText>{itemData.item}</BodyText>
+  </View>
+);
+
 const GameScreen = (props) => {
   const currentHigh = useRef(100);
   const currentLow = useRef(1);
-  const [currentGuess, setCurrentGuess] = useState(
-    generateRandomBetween(1, 100, props.userChoice)
-  );
-  const [rounds, setRounds] = useState(0);
+  const initialGuess = generateRandomBetween(1, 100, props.userChoice);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
   useEffect(() => {
     if (currentGuess === props.userChoice) {
       props.onGameOver(rounds);
@@ -50,7 +56,7 @@ const GameScreen = (props) => {
       currentGuess
     );
     setCurrentGuess(nextNum);
-    setRounds((curRounds) => curRounds + 1);
+    setPastGuesses((curPastGuesses) => [nextNum.toString(), ...curPastGuesses]);
   };
   return (
     <View style={styles.screen}>
@@ -64,6 +70,14 @@ const GameScreen = (props) => {
           <AntDesign name='pluscircle' size={24} color='white' />
         </MainButton>
       </Card>
+      <View style={styles.listContainer}>
+        <FlatList
+          keyExtractor={(item) => item}
+          data={pastGuesses}
+          renderItem={renderListItem.bind(this, pastGuesses.length)}
+          contentContainerStyle={styles.list}
+        />
+      </View>
     </View>
   );
 };
@@ -81,8 +95,23 @@ const styles = StyleSheet.create({
     width: 300,
     maxWidth: '90%',
   },
-  button: {
-    width: 100,
+  listContainer: {
+    flex: 1,
+    width: '60%',
+  },
+  list: {
+    flexGrow: 1,
+    justifyContent: 'flex-end',
+  },
+  listItem: {
+    borderColor: '#ccc',
+    borderWidth: 1,
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
 });
 export default GameScreen;

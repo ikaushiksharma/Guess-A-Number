@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
+
 import MainButton from '../components/MainButton';
 import defaultStyle from '../constants/default-styles';
+
 const GameOverScreen = (props) => {
   return (
     <View style={styles.screen}>
