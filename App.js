@@ -7,6 +7,7 @@ import GameScreen from './screens/GameScreen';
 import StartGameScreen from './screens/StartGameScreen';
 import GameOverScreen from './screens/GameOverScreen';
 
+
 const fetchFonts = () => {
   Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -30,7 +31,7 @@ export default function App() {
   }
 
   const configureNewGameHandler = () => {
-    setGuessRounds(0);
+    setGuessRounds(0); 
     setUserNumber(null);
   };
 
