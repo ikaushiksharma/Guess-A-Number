@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, Alert } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+
 import Card from '../components/Card';
+import MainButton from '../components/MainButton';
 import NumberContainer from '../components/NumberContainer';
 import defaultStyle from '../constants/default-styles';
 
@@ -54,11 +57,12 @@ const GameScreen = (props) => {
       <Text style={defaultStyle.title}>Opponent's Guess</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
-        <Button title='Lower' onPress={nextGuessHandler.bind(this, 'lower')} />
-        <Button
-          title='Greater'
-          onPress={nextGuessHandler.bind(this, 'greater')}
-        />
+        <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
+          <AntDesign name='minuscircle' size={24} color='white' />{' '}
+        </MainButton>
+        <MainButton onPress={nextGuessHandler.bind(this, 'greater')}>
+          <AntDesign name='pluscircle' size={24} color='white' />
+        </MainButton>
       </Card>
     </View>
   );
@@ -75,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginTop: 20,
     width: 300,
-    maxWidth: '80%',
+    maxWidth: '90%',
   },
   button: {
     width: 100,
