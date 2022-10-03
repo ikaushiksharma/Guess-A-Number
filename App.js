@@ -80,7 +80,7 @@ export default function App() {
   return (
     <View style={styles.screen} onLayout={onLayoutRootView}>
       <Header title='Guess a Number' />
-      {content}
+        {content}
     </View>
   );
 }
@@ -88,5 +88,6 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: '#E0E0E0',
   },
 });
