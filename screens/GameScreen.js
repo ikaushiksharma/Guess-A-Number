@@ -52,7 +52,7 @@ const GameScreen = (props) => {
     Dimensions.addEventListener('change', updateLayout);
 
     return () => {
-      Dimensions.removeEventListener('change', updateLayout);
+      Dimensions.addEventListener('change', updateLayout).remove();
     };
   });
 
@@ -118,7 +118,7 @@ const GameScreen = (props) => {
   }
   return (
     <View style={styles.screen}>
-      <Text style={DefaultStyles.title}>Opponent's Guess</Text>
+      <Text style={defaultStyle.title}>Opponent's Guess</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
         <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>

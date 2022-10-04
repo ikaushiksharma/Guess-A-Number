@@ -24,12 +24,12 @@ const GameOverScreen = (props) => {
           />
         </View>
         <View style={styles.resultContainer}>
-          <BodyText style={styles.resultText}>
+          <Text style={{ ...styles.resultText, ...defaultStyle.bodyText }}>
             Your phone needed{' '}
             <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
             guess the number{' '}
             <Text style={styles.highlight}>{props.userNumber}</Text>.
-          </BodyText>
+          </Text>
         </View>
         <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
       </View>

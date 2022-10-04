@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   View,
   Text,
@@ -42,7 +42,7 @@ const StartGameScreen = (props) => {
 
     Dimensions.addEventListener('change', updateLayout);
     return () => {
-      Dimensions.removeEventListener('change', updateLayout);
+      Dimensions.addEventListener('change', updateLayout).remove();
     };
   });
 
