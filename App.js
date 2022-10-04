@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Header from './components/Header';
@@ -13,16 +13,6 @@ export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [guessRounds, setGuessRounds] = useState(0);
   const [dataLoaded, setDataLoaded] = useState(false);
-
-  // if (!dataLoaded) {
-  //   return (
-  //     <AppLoading
-  //       startAsync={fetchFonts}
-  //       onFinish={() => setDataLoaded(true)}
-  //       onError={(err) => console.log(err)}
-  //     />
-  //   );
-  // }
   useEffect(() => {
     async function prepare() {
       try {
@@ -78,10 +68,10 @@ export default function App() {
     );
   }
   return (
-    <View style={styles.screen} onLayout={onLayoutRootView}>
+    <SafeAreaView style={styles.screen} onLayout={onLayoutRootView}>
       <Header title='Guess a Number' />
-        {content}
-    </View>
+      {content}
+    </SafeAreaView>
   );
 }
 
